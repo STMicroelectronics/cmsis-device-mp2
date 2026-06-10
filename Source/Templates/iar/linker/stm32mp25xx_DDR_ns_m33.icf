@@ -1,0 +1,148 @@
+/*###ICF### Section handled by ICF editor, don't touch! ****/
+/*-Editor annotation file-*/
+/* IcfEditorFile="$TOOLKIT_DIR$\config\ide\IcfEditor\cortex_v1_4.xml" */
+/*-Specials-*/
+define symbol __ICFEDIT_intvec_start__ = 0x80100000;
+/*-Memory Regions-*/
+define symbol __ICFEDIT_region_SYSRAM_NS_boot_start__ = 0x0A000000;
+define symbol __ICFEDIT_region_SYSRAM_NS_start__ = 0x0A006000;
+define symbol __ICFEDIT_region_SYSRAM_NS_end__   = 0x0A03FFFF;
+define symbol __ICFEDIT_region_SRAM1_NS_start__ = 0x0A040000;
+define symbol __ICFEDIT_region_SRAM1_NS_end__   = 0x0A05FFFF;
+define symbol __ICFEDIT_region_SRAM2_NS_start__ = 0x0A060000;
+define symbol __ICFEDIT_region_SRAM2_NS_end__   = 0x0A07FFFF;
+define symbol __ICFEDIT_region_RETRAM_NS_start__ = 0x0A080000;
+define symbol __ICFEDIT_region_RETRAM_NS_end__   = 0x0A09FFFF;
+define symbol __ICFEDIT_region_VEDRAM_NS_start__ = 0x0A0A0000;
+define symbol __ICFEDIT_region_VEDRAM_NS_end__   = 0x0A0BFFFF;
+define symbol __ICFEDIT_region_LPSRAM1_NS_start__ = 0x0A0C0000;
+define symbol __ICFEDIT_region_LPSRAM1_NS_end__   = 0x0A0C1FFF;
+define symbol __ICFEDIT_region_LPSRAM2_NS_start__ = 0x0A0C2000;
+define symbol __ICFEDIT_region_LPSRAM2_NS_end__   = 0x0A0C3FFF;
+define symbol __ICFEDIT_region_LPSRAM3_NS_start__ = 0x0A0C4000;
+define symbol __ICFEDIT_region_LPSRAM3_NS_end__   = 0x0A0C7FFF;
+define symbol __ICFEDIT_region_DDR_start__ = 0x80100600;
+define symbol __ICFEDIT_region_DDR_end__   = 0xBFFFFFFF;
+/*-Sizes-*/
+define symbol __ICFEDIT_size_cstack__     = 0x400;
+define symbol __ICFEDIT_size_heap__       = 0x200;
+/**** End of ICF editor section. ###ICF###*/
+
+define memory mem with size = 4G;
+define symbol use_SYSRAM = (__ICFEDIT_region_SYSRAM_NS_start__ != 0x0 || __ICFEDIT_region_SYSRAM_NS_end__ != 0x0);
+define symbol use_SRAM1 = (__ICFEDIT_region_SRAM1_NS_start__ != 0x0 || __ICFEDIT_region_SRAM1_NS_end__ != 0x0);
+define symbol use_SRAM2 = (__ICFEDIT_region_SRAM2_NS_start__ != 0x0 || __ICFEDIT_region_SRAM2_NS_end__ != 0x0);
+define symbol use_RETRAM = (__ICFEDIT_region_RETRAM_NS_start__ != 0x0 || __ICFEDIT_region_RETRAM_NS_end__ != 0x0);
+define symbol use_VEDRAM = (__ICFEDIT_region_VEDRAM_NS_start__ != 0x0 || __ICFEDIT_region_VEDRAM_NS_end__ != 0x0);
+define symbol use_LPSRAM1 = (__ICFEDIT_region_LPSRAM1_NS_start__ != 0x0 || __ICFEDIT_region_LPSRAM1_NS_end__ != 0x0);
+define symbol use_LPSRAM2 = (__ICFEDIT_region_LPSRAM2_NS_start__ != 0x0 || __ICFEDIT_region_LPSRAM2_NS_end__ != 0x0);
+define symbol use_LPSRAM3 = (__ICFEDIT_region_LPSRAM3_NS_start__ != 0x0 || __ICFEDIT_region_LPSRAM3_NS_end__ != 0x0);
+define symbol use_DDR = (__ICFEDIT_region_DDR_start__ != 0x0 || __ICFEDIT_region_DDR_end__ != 0x0);
+
+
+if (use_SYSRAM)
+{
+  define region SYSRAM_region = mem:[from __ICFEDIT_region_SYSRAM_NS_start__ to __ICFEDIT_region_SYSRAM_NS_end__];
+}
+else
+{
+  define region SYSRAM_region = [];
+}
+
+if (use_SRAM1)
+{
+  define region SRAM1_region = mem:[from __ICFEDIT_region_SRAM1_NS_start__ to __ICFEDIT_region_SRAM1_NS_end__];
+}
+else
+{
+  define region SRAM1_region = [];
+}
+
+if (use_SRAM2)
+{
+  define region SRAM2_region = mem:[from __ICFEDIT_region_SRAM2_NS_start__ to __ICFEDIT_region_SRAM2_NS_end__];
+}
+else
+{
+  define region SRAM2_region = [];
+}
+
+define region SRAM_region = SRAM1_region | SRAM2_region;
+
+if (use_RETRAM)
+{
+  define region RETRAM_region = mem:[from __ICFEDIT_region_RETRAM_NS_start__ to __ICFEDIT_region_RETRAM_NS_end__];
+}
+else
+{
+  define region RETRAM_region = [];
+}
+
+if (use_VEDRAM)
+{
+  define region VEDRAM_region = mem:[from __ICFEDIT_region_VEDRAM_NS_start__ to __ICFEDIT_region_VEDRAM_NS_end__];
+}
+else
+{
+  define region VEDRAM_region = [];
+}
+
+if (use_LPSRAM1)
+{
+  define region LPSRAM1_region = mem:[from __ICFEDIT_region_LPSRAM1_NS_start__ to __ICFEDIT_region_LPSRAM1_NS_end__];
+}
+else
+{
+  define region LPSRAM1_region = [];
+}
+
+if (use_LPSRAM2)
+{
+  define region LPSRAM2_region = mem:[from __ICFEDIT_region_LPSRAM2_NS_start__ to __ICFEDIT_region_LPSRAM2_NS_end__];
+}
+else
+{
+  define region LPSRAM2_region = [];
+}
+
+if (use_LPSRAM3)
+{
+  define region LPSRAM3_region = mem:[from __ICFEDIT_region_LPSRAM3_NS_start__ to __ICFEDIT_region_LPSRAM3_NS_end__];
+}
+else
+{
+  define region LPSRAM3_region = [];
+}
+
+define region LPSRAM_region = LPSRAM1_region | LPSRAM2_region | LPSRAM3_region;
+
+if (use_DDR)
+{
+  define region DDR_region = mem:[from __ICFEDIT_region_DDR_start__ to __ICFEDIT_region_DDR_end__];
+}
+else
+{
+  define region DDR_region = [];
+}
+
+initialize by copy { readwrite };
+do not initialize  { section .noinit };
+if (isdefinedsymbol(__USE_DLIB_PERTHREAD))
+{
+  // Required in a multi-threaded application
+  initialize by copy with packing = none { section __DLIB_PERTHREAD };
+}
+
+place at address mem:__ICFEDIT_intvec_start__ { readonly section .intvec };
+
+if (!isempty(DDR_region))
+{
+  place in DDR_region  { readonly };
+}
+
+if (!isempty(DDR_region))
+{
+  define block CSTACK     with alignment = 8, size = __ICFEDIT_size_cstack__     { };
+  define block HEAP       with alignment = 8, size = __ICFEDIT_size_heap__       { };
+  place in DDR_region  { readwrite, block CSTACK, block HEAP };
+}
